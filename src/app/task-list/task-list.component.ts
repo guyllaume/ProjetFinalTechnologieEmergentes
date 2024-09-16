@@ -66,7 +66,6 @@ export class TaskListComponent {
     this.taskApiService.getTasksAssignedTo(this.token).subscribe(
       (res) => {
         this.assignedTasks = res.allTasks;
-        console.log(this.assignedTasks)
       }
     );
   }
@@ -106,5 +105,8 @@ export class TaskListComponent {
   shouldShowAssingedTo(){
     this.showCreatedBy = false;
     this.showAssignedTo = true;
+  }
+  goToCreate(){
+    this.router.navigate(['/create'])
   }
 }

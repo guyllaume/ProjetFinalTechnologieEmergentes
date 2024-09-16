@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-signup',
@@ -10,9 +11,11 @@ import { Router } from '@angular/router';
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
+  isMobile: boolean;
   signupForm: FormGroup;
 
   constructor(private userService: UserService, private fb: FormBuilder, private authService: AuthService, private router: Router){
+    this.isMobile = Capacitor.isNativePlatform();
     this.signupForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],

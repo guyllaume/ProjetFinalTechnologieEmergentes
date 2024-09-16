@@ -17,12 +17,24 @@ export class TaskApiService {
     });
     return this.http.get(`${this.apiUrl}/createdby`, { headers })
   }
+  getTasksCreatedByUser(token: string, uid: string): Observable<any>{
+    const headers = new HttpHeaders({
+      'x-access-token': this.authService.getToken() || "",
+    });
+    return this.http.get(`${this.apiUrl}/createdby/${uid}`, { headers })
+  }
 
   getTasksAssignedTo(token: string): Observable<any>{
     const headers = new HttpHeaders({
       'x-access-token': this.authService.getToken() || "",
     });
     return this.http.get(`${this.apiUrl}/assignedto`, { headers })
+  }
+  getTasksAssignedToUser(token: string, uid: string): Observable<any>{
+    const headers = new HttpHeaders({
+      'x-access-token': this.authService.getToken() || "",
+    });
+    return this.http.get(`${this.apiUrl}/assignedto/${uid}`, { headers })
   }
 
   updateTaskStatus(token: string, taskUid: string, done: boolean): Observable<any>{
